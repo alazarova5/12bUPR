@@ -1,0 +1,76 @@
+﻿@using BooksStoreApplication.Models.Book
+@model IEnumerable<BookAllViewModel>
+
+@{
+    ViewData["Title"] = "All books";
+}
+
+<h1>All books</h1>
+<p>
+    <a asp-action="Create">Create New Book</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Picture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearOfPublication)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Picture)" alt="Image" width="100" />
+                    @*@Html.DisplayFor(modelItem => item.Picture)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.YearOfPublication)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-controller="Book" asp-route-id="@item.Id">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+
+                <form asp-asp-controller="Book" asp-action="Index" method="get">
+                    <p>
+                        Genre: <input type="text" name="searchStringGenre"/>
+                        <input type="submit" value="Filter"/>
+                    </p>
+                </form>
+            </tr>
+        }
+    </tbody>
+</table>

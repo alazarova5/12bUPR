@@ -8,7 +8,14 @@
 <p>
     <a asp-action="=Create">Create New Dog</a>
 </p>
+<form asp-controller="Dog" asp-action="Index" method="get">
+    <p>
+        Breed:<input type="text" name="SearchStringBreed"/>
+        Name:<input type="text" name="SearchStringName"/>
+        <inout typeof="submit" value="Filter"/>
+    </p>
 
+</form>
 <table class="table">
     <thead>
         <tr>
