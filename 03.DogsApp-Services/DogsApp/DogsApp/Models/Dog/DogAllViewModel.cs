@@ -15,7 +15,7 @@ namespace DogsApp.Models.Dog
 
 
         [Display(Name = "Breed")]
-        public string Breed { get; set; } = null!;
+        public string BreedName { get; set; } = null!;
 
         [Display(Name = "Dog Picture")]
         public string? Picture { get; set; }

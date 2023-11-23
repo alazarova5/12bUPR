@@ -20,7 +20,7 @@ namespace DogsApp.Models.Dog
         public int Age { get; set; }
 
         [Display(Name = "Breed")]
-        public string BreedId { get; set; }
+        public int BreedId { get; set; }
 
         [Display(Name = "Dog Picture")]
         public string? Picture { get; set; }

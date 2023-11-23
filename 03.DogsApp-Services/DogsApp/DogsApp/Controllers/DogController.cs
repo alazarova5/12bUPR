@@ -60,9 +60,15 @@ namespace DogsApp.Controllers
                 Id = item.Id,
                 Name = item.Name,
                 Age = item.Age,
-                Breed = item.Breed,
+                BreedId = item.BreedId,
                 Picture=item.Picture
             };
+            dog.Breeds = _breedService.GetBreeds()
+                .Select(c => new BreedPairViewModel()
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                }).ToList();
             return View(dog);
         }
 
@@ -71,7 +77,7 @@ namespace DogsApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updated = _dogService.UpdateDog(id, bindingModel.Name, bindingModel.Age, bindingModel.Breed, bindingModel.Picture);
+                var updated = _dogService.UpdateDog(id, bindingModel.Name, bindingModel.Age, bindingModel.BreedId, bindingModel.Picture);
                 if (updated)
                 {
                     return this.RedirectToAction("Index");
@@ -95,7 +101,7 @@ namespace DogsApp.Controllers
                 Id = item.Id,
                 Name = item.Name,
                 Age = item.Age,
-                Breed = item.Breed,
+                BreedName = item.Breed.Name,
                 Picture = item.Picture
             };
             return View(dog);
@@ -108,7 +114,7 @@ namespace DogsApp.Controllers
 
             if (deleted)
             {
-                return this.RedirectToAction("Index", "Dogs");
+                return this.RedirectToAction("Index", "Dog");
             }
             else
             {
@@ -131,7 +137,7 @@ namespace DogsApp.Controllers
                     Id=dogFromDb.Id,
                     Name = dogFromDb.Name,
                     Age= dogFromDb.Age,
-                    Breed=dogFromDb.Breed,
+                    BreedName=dogFromDb.Breed.Name,
                     Picture=dogFromDb.Picture
                 }).ToList();
            
@@ -150,7 +156,7 @@ namespace DogsApp.Controllers
                 Id = item.Id,
                 Name = item.Name,
                 Age = item.Age,
-                Breed = item.Breed,
+                BreedName = item.Breed.Name,
                 Picture = item.Picture
             };
             return View(dog);

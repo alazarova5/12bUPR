@@ -30,7 +30,9 @@ namespace DogsApp.Core.Services
 
         public List<Dog> GetDogsByBreed(int breedId)
         {
-            return _context.Dogs.Where(x=>x.BreedId==breedId).ToList();
+            return _context.Dogs
+                .Where(x => x.BreedId == breedId)
+                .ToList();
         }
     }
 }
