@@ -3,7 +3,7 @@ using DogsApp.Core.Contracts;
 using DogsApp.Core.Services;
 using DogsApp.Infrastructure.Data;
 using DogsApp.Infrastructure.Data.Domain;
-
+using DogsApp.Infrastructure.Data.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,9 +29,9 @@ namespace DogsApp
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequiredLength = 5;
 
             })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddControllersWithViews();
